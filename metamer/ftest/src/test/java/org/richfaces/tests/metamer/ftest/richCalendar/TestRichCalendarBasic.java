@@ -22,9 +22,8 @@
 package org.richfaces.tests.metamer.ftest.richCalendar;
 
 import static org.jboss.arquillian.ajocado.Graphene.guardNoRequest;
-
+import static org.jboss.arquillian.ajocado.Graphene.jq;
 import static org.jboss.arquillian.ajocado.utils.URLUtils.buildUrl;
-
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertTrue;
@@ -35,6 +34,9 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import org.jboss.arquillian.ajocado.format.SimplifiedFormat;
+import org.testng.SkipException;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 
@@ -264,5 +266,31 @@ public class TestRichCalendarBasic extends AbstractCalendarTest {
     @Override
     public void testApplyButton() {
         super.testApplyButton();
+    }
+
+    /**
+     * Opens the tested page. If templates is not empty nor null, it appends url parameter with templates.
+     *
+     * @param templates
+     *            templates that will be used for test, e.g. "red_div"
+     */
+    @BeforeMethod(alwaysRun = true)
+    public void loadPage() {
+
+        final String group = "span.rf-tab-lbl:contains({0})";
+        final String component = "li.rf-ulst-itm a:contains({0})";
+        final String page = "div.links a:contains({0})";
+
+        // selenium.open(buildUrl(getTestUrl() + "?templates=" + template.toString()));
+        selenium.open(buildUrl("http://localhost:8080/portal/classic/metamer"));
+        selenium.waitForPageToLoad(TIMEOUT);
+
+        selenium.click(jq(SimplifiedFormat.format(group, "Rich")));
+
+        selenium.click(jq(SimplifiedFormat.format(component, "Rich Calendar")));
+        selenium.waitForPageToLoad(TIMEOUT);
+
+        selenium.click(jq(SimplifiedFormat.format(page, "Simple")));
+        selenium.waitForPageToLoad(TIMEOUT);
     }
 }
