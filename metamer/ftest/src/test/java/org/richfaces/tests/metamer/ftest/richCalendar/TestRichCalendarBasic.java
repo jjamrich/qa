@@ -28,14 +28,13 @@ import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertTrue;
 import static org.testng.Assert.fail;
+import static org.jboss.arquillian.ajocado.format.SimplifiedFormat.format;
 
 import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import org.jboss.arquillian.ajocado.format.SimplifiedFormat;
-import org.testng.SkipException;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -282,15 +281,17 @@ public class TestRichCalendarBasic extends AbstractCalendarTest {
         final String page = "div.links a:contains({0})";
 
         // selenium.open(buildUrl(getTestUrl() + "?templates=" + template.toString()));
-        selenium.open(buildUrl("http://localhost:8080/portal/classic/metamer"));
+
+        selenium.open(buildUrl(format("{0}://{1}:{2}/{3}",
+            contextPath.getProtocol(), contextPath.getHost(), contextPath.getPort(), "portal/classic/metamer")));
         selenium.waitForPageToLoad(TIMEOUT);
 
-        selenium.click(jq(SimplifiedFormat.format(group, "Rich")));
+        selenium.click(jq(format(group, "Rich")));
 
-        selenium.click(jq(SimplifiedFormat.format(component, "Rich Calendar")));
+        selenium.click(jq(format(component, "Rich Calendar")));
         selenium.waitForPageToLoad(TIMEOUT);
 
-        selenium.click(jq(SimplifiedFormat.format(page, "Simple")));
+        selenium.click(jq(format(page, "Simple")));
         selenium.waitForPageToLoad(TIMEOUT);
     }
 }
