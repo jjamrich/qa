@@ -113,6 +113,11 @@ public class TestRichCalendarAttributes extends AbstractCalendarTest {
         return buildUrl(contextPath, "faces/components/richCalendar/simple.xhtml");
     }
 
+    @Override
+    public MetamerNavigation getComponentExampleNavigation() {
+        return new MetamerNavigation("Rich", "Rich Calendar", "Simple");
+    }
+
     @Test
     public void testBoundaryDatesModeNull() {
         selenium.click(input);

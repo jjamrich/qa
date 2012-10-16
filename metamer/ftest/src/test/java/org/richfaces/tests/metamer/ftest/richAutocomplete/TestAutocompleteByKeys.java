@@ -22,11 +22,9 @@
 package org.richfaces.tests.metamer.ftest.richAutocomplete;
 
 import static org.jboss.arquillian.ajocado.utils.URLUtils.buildUrl;
-
 import static org.jboss.test.selenium.RequestTypeModelGuard.guardNoRequest;
 import static org.jboss.test.selenium.RequestTypeModelGuard.guardXhr;
 import static org.richfaces.tests.metamer.ftest.attributes.AttributeList.autocompleteAttributes;
-
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
@@ -59,6 +57,11 @@ public class TestAutocompleteByKeys extends AbstractAutocompleteTest {
     @Override
     public URL getTestUrl() {
         return buildUrl(contextPath, "faces/components/richAutocomplete/autocomplete.xhtml");
+    }
+
+    @Override
+    public MetamerNavigation getComponentExampleNavigation() {
+        return new MetamerNavigation("Rich", "Rich Autocomplete", "Simple");
     }
 
     @BeforeMethod

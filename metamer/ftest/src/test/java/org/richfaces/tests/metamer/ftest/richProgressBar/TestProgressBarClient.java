@@ -34,6 +34,7 @@ import java.net.URL;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
+
 import org.jboss.arquillian.ajocado.dom.Attribute;
 import org.jboss.arquillian.ajocado.javascript.JavaScript;
 import org.jboss.arquillian.ajocado.locator.JQueryLocator;
@@ -61,6 +62,11 @@ public class TestProgressBarClient extends AbstractGrapheneTest {
     @Override
     public URL getTestUrl() {
         return buildUrl(contextPath, "faces/components/richProgressBar/clientMode.xhtml");
+    }
+
+    @Override
+    public MetamerNavigation getComponentExampleNavigation() {
+        return new MetamerNavigation("Rich", "Rich Progress Bar", "Client Mode");
     }
 
     @Test

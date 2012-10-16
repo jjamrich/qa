@@ -52,6 +52,11 @@ public class TestCalendarKVS extends AbstractCalendarTest {
         return URLUtils.buildUrl(contextPath, "faces/components/richCalendar/simple.xhtml");
     }
 
+    @Override
+    public MetamerNavigation getComponentExampleNavigation() {
+        return new MetamerNavigation("Rich", "Rich Calendar", "Simple");
+    }
+
     @IssueTracking("https://issues.jboss.org/browse/RF-12300")
     @Test(groups = {"keepVisualStateTesting", "4.Future"})
     public void testRenderAll() {

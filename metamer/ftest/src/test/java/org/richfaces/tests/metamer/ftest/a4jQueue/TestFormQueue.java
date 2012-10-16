@@ -22,7 +22,6 @@
 package org.richfaces.tests.metamer.ftest.a4jQueue;
 
 import static org.jboss.arquillian.ajocado.utils.URLUtils.buildUrl;
-
 import static org.testng.Assert.assertTrue;
 
 import java.net.URL;
@@ -66,6 +65,11 @@ public class TestFormQueue extends AbstractGrapheneTest {
     @Override
     public URL getTestUrl() {
         return buildUrl(contextPath, "faces/components/a4jQueue/formQueue.xhtml");
+    }
+
+    @Override
+    public MetamerNavigation getComponentExampleNavigation() {
+        return new MetamerNavigation("A4J", "A4J Queue", "Form Queue");
     }
 
     /**

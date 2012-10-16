@@ -42,6 +42,11 @@ public class TestAutocompleteCSV extends TestComponentWithJSR303 {
         return buildUrl(contextPath, "faces/components/richAutocomplete/csv.xhtml");
     }
 
+    @Override
+    public MetamerNavigation getComponentExampleNavigation() {
+        return new MetamerNavigation("Rich", "Rich Autocomplete", "Client Side Validation");
+    }
+
     @Test
     public void testNotEmpty() {
         verifyNotEmpty();

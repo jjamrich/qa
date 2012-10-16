@@ -45,6 +45,11 @@ public class TestRichMessagesJSR303 extends RichMessagesTest {
     }
 
     @Override
+    public MetamerNavigation getComponentExampleNavigation() {
+        return new MetamerNavigation("Rich", "Rich Messages", "JSR-303 Bean Validation");
+    }
+
+    @Override
     public JQueryLocator getTestElemLocator() {
         return mainMsg1;
     }

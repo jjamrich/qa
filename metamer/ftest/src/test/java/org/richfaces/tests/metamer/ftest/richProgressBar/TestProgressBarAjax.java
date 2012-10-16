@@ -39,6 +39,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
+
 import org.jboss.arquillian.ajocado.dom.Attribute;
 import org.jboss.arquillian.ajocado.dom.Event;
 import org.jboss.arquillian.ajocado.javascript.JavaScript;
@@ -68,6 +69,11 @@ public class TestProgressBarAjax extends AbstractGrapheneTest {
     @Override
     public URL getTestUrl() {
         return buildUrl(contextPath, "faces/components/richProgressBar/ajaxMode.xhtml");
+    }
+
+    @Override
+    public MetamerNavigation getComponentExampleNavigation() {
+        return new MetamerNavigation("Rich", "Rich Progress Bar", "Ajax Mode");
     }
 
     @Test

@@ -45,6 +45,11 @@ public class TestAutocompleteAttributes extends AbstractAutocompleteTest {
         return buildUrl(contextPath, "faces/components/richAutocomplete/autocomplete.xhtml");
     }
 
+    @Override
+    public MetamerNavigation getComponentExampleNavigation() {
+        return new MetamerNavigation("Rich", "Rich Autocomplete", "Simple");
+    }
+
     @Test
     @Templates(exclude = { "richPopupPanel" })
     public void testValueChangeListener() {

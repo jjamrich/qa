@@ -23,9 +23,7 @@ package org.richfaces.tests.metamer.ftest.richAutocomplete;
 
 import static org.jboss.arquillian.ajocado.Graphene.textEquals;
 import static org.jboss.arquillian.ajocado.Graphene.waitAjax;
-
 import static org.jboss.arquillian.ajocado.utils.URLUtils.buildUrl;
-
 import static org.testng.Assert.assertEquals;
 
 import java.net.URL;
@@ -51,6 +49,10 @@ public class TestAutocompleteKVS extends AbstractAutocompleteTest {
         return buildUrl(contextPath, "faces/components/richAutocomplete/autocomplete.xhtml");
     }
 
+    @Override
+    public MetamerNavigation getComponentExampleNavigation() {
+        return new MetamerNavigation("Rich", "Rich Autocomplete", "Simple");
+    }
 
     @Test(groups = {"keepVisualStateTesting"})
     public void testRefreshFullPage() {

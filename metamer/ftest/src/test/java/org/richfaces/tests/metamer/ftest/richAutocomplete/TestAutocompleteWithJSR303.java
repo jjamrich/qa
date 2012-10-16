@@ -41,6 +41,11 @@ public class TestAutocompleteWithJSR303 extends TestComponentWithJSR303 {
         return buildUrl(contextPath, "faces/components/richAutocomplete/jsr303.xhtml");
     }
 
+    @Override
+    public MetamerNavigation getComponentExampleNavigation() {
+        return new MetamerNavigation("Rich", "Rich Autocomplete", "JSR-303 Bean Validation");
+    }
+
     @Test
     public void testNotEmpty() {
         verifyNotEmpty();

@@ -23,9 +23,7 @@ package org.richfaces.tests.metamer.ftest.richCalendar;
 
 import static org.jboss.arquillian.ajocado.Graphene.retrieveText;
 import static org.jboss.arquillian.ajocado.Graphene.waitGui;
-
 import static org.jboss.arquillian.ajocado.utils.URLUtils.buildUrl;
-
 import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertTrue;
 import static org.testng.Assert.fail;
@@ -50,6 +48,11 @@ public class TestRichCalendarModel extends AbstractCalendarTest {
     @Override
     public URL getTestUrl() {
         return buildUrl(contextPath, "faces/components/richCalendar/dataModel.xhtml");
+    }
+
+    @Override
+    public MetamerNavigation getComponentExampleNavigation() {
+        return new MetamerNavigation("Rich", "Rich Calendar", "Data Model");
     }
 
     @Test(groups = { "4.0.0.Final" })

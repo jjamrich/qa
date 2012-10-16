@@ -44,6 +44,11 @@ public class TestRichMessagesCSV extends RichMessagesTest {
     }
 
     @Override
+    public MetamerNavigation getComponentExampleNavigation() {
+        return new MetamerNavigation("Rich", "Rich Messages", "Client Side Validation");
+    }
+
+    @Override
     public JQueryLocator getTestElemLocator() {
         return mainMsg1;
     }
