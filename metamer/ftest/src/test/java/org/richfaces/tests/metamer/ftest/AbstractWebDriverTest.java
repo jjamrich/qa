@@ -600,7 +600,7 @@ public abstract class AbstractWebDriverTest<Page extends MetamerPage> extends Ab
 
         protected String getTime() {
             WebElement el = waitUntilElementIsVisible(REQ_TIME);
-            return el.getText(); 
+            return el.getText();
         }
 
         protected void beforeAction() {
