@@ -63,6 +63,11 @@ public abstract class AbstractValidationMessagesTest extends AbstractWebDriverTe
         return buildUrl(contextPath, "faces/components/" + component + "/validationMessages.xhtml");
     }
 
+    @Override
+    public MetamerNavigation getComponentExampleNavigation() {
+        return new MetamerNavigation("Rich", component, "Validation messages");
+    }
+
     public void testInit() {
         page.setCorrectValuesAndSubmitJSF();
         assertTrue(page.noErrorMessagesDisplayed(), "No error messages should now be on page.");

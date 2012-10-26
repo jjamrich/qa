@@ -60,6 +60,11 @@ public class TestA4JCommandButton extends AbstractWebDriverTest<CommandButtonLin
     }
 
     @Override
+    public MetamerNavigation getComponentExampleNavigation() {
+        return new MetamerNavigation("A4J", "A4J Command Button", "Simple");
+    }
+
+    @Override
     protected CommandButtonLinkPage createPage() {
         return new CommandButtonLinkPage();
     }

@@ -24,6 +24,7 @@ package org.richfaces.tests.metamer.ftest.richMessage;
 import static org.jboss.arquillian.ajocado.utils.URLUtils.buildUrl;
 
 import java.net.URL;
+
 import org.jboss.arquillian.graphene.Graphene;
 import org.testng.annotations.Test;
 
@@ -40,6 +41,11 @@ public class TestRichMessageJSFValidator extends AbstractRichMessageWDTest {
     @Override
     public URL getTestUrl() {
         return buildUrl(contextPath, "faces/components/richMessage/jsfValidator.xhtml");
+    }
+
+    @Override
+    public MetamerNavigation getComponentExampleNavigation() {
+        return new MetamerNavigation("Rich", "Rich Message", "Simple JSF Validation");
     }
 
     @Test

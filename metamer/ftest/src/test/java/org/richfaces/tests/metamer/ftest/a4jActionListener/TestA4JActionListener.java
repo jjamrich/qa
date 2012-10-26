@@ -49,6 +49,11 @@ public class TestA4JActionListener extends AbstractWebDriverTest<ActionListenerP
     }
 
     @Override
+    public MetamerNavigation getComponentExampleNavigation() {
+        return new MetamerNavigation("A4J", "A4J Action Listener", "All");
+    }
+
+    @Override
     protected ActionListenerPage createPage() {
         return new ActionListenerPage();
     }

@@ -57,6 +57,11 @@ public class TestRichAccordionWebDriver extends AbstractWebDriverTest<AccordionP
     }
 
     @Override
+    public MetamerNavigation getComponentExampleNavigation() {
+        return new MetamerNavigation("Rich", "Rich Accordion", "Simple");
+    }
+
+    @Override
     protected AccordionPage createPage() {
         return new AccordionPage();
     }

@@ -42,6 +42,11 @@ public class TestHInputTextarea extends AbstractAjaxTest {
         return buildUrl(contextPath, "faces/components/a4jAjax/hInputTextarea.xhtml");
     }
 
+    @Override
+    public MetamerNavigation getComponentExampleNavigation() {
+        return new MetamerNavigation("A4J", "A4J Ajax", "Input Textarea");
+    }
+
     @Test
     public void testSimpleType() {
         super.testType();

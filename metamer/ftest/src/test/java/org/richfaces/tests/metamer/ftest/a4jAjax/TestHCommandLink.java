@@ -45,6 +45,11 @@ public class TestHCommandLink extends AbstractAjaxTest {
         return buildUrl(contextPath, "faces/components/a4jAjax/hCommandLink.xhtml");
     }
 
+    @Override
+    public MetamerNavigation getComponentExampleNavigation() {
+        return new MetamerNavigation("A4J", "A4J Ajax", "Command Button");
+    }
+
     @Test
     public void testSimpleClick() {
         page.input.sendKeys("RichFaces 4");

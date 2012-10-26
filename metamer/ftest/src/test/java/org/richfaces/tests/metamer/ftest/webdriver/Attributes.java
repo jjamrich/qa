@@ -381,14 +381,14 @@ public class Attributes<T extends AttributeEnum> {
 
         private final WebElement element;
         private String time1;
-        private final By REQ_TIME = By.cssSelector("span[id='requestTime']");
+        private final By REQ_TIME = By.cssSelector("span[id$='requestTime']");
 
         public RequestTimeChangeWaitHandler(WebElement element) {
             this.element = element;
         }
 
         private String getDate() {
-            WebElement el = waitUntilElementIsVisible(By.cssSelector("span[id='requestTime']"));
+            WebElement el = waitUntilElementIsVisible(REQ_TIME);
             String time = el.getText();
             return time;
         }

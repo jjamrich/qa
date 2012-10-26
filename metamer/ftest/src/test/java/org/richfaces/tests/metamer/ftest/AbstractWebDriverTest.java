@@ -21,13 +21,12 @@
  *******************************************************************************/
 package org.richfaces.tests.metamer.ftest;
 
+import static org.jboss.arquillian.ajocado.format.SimplifiedFormat.format;
 import static org.jboss.arquillian.ajocado.utils.URLUtils.buildUrl;
 import static org.richfaces.tests.metamer.ftest.webdriver.AttributeList.basicAttributes;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 import static org.testng.Assert.fail;
-
-import com.google.common.base.Predicate;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
@@ -62,7 +61,10 @@ import org.richfaces.tests.metamer.ftest.webdriver.Attributes;
 import org.richfaces.tests.metamer.ftest.webdriver.MetamerPage;
 import org.richfaces.tests.metamer.ftest.webdriver.utils.StringEqualsWrapper;
 import org.testng.SkipException;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+
+import com.google.common.base.Predicate;
 
 public abstract class AbstractWebDriverTest<Page extends MetamerPage> extends AbstractMetamerTest {
 
@@ -113,9 +115,26 @@ public abstract class AbstractWebDriverTest<Page extends MetamerPage> extends Ab
         if (driver == null) {
             throw new SkipException("webDriver isn't initialized");
         }
-        driver.get(buildUrl(getTestUrl() + "?templates=" + template.toString()).toExternalForm());
+        if (runInPortalEnv) {
+            driver.get(format("{0}://{1}:{2}/{3}",
+                contextPath.getProtocol(), contextPath.getHost(), contextPath.getPort(), "portal/classic/metamer"));
+            openComponentExamplePageInPortal(getComponentExampleNavigation());
+        } else {
+            driver.get(buildUrl(getTestUrl() + "?templates=" + template.toString()).toExternalForm());
+        }
         driverType = DriverType.getCurrentType(driver);
     }
+
+    @AfterMethod
+    public void return2DefaultPage() {
+        if (runInPortalEnv) {
+            // open Metamer home page after test execution
+            // Open portal page (loadPage) just show Metamer portlet in his last state
+            driver.findElement(By.cssSelector("a[id$=goHomeLink]")).click();
+        }
+    }
+
+    public abstract MetamerNavigation getComponentExampleNavigation();
 
     @BeforeMethod(alwaysRun = true, dependsOnMethods = { "loadPage" })
     public void initializePage() {
@@ -550,22 +569,38 @@ public abstract class AbstractWebDriverTest<Page extends MetamerPage> extends Ab
     }
 
     /**
+     * Opens component example page in portal environment.
+     * Since metamer app deloyed to AS is accessible by URL,
+     * in portal it is better to use click to main menu
+     */
+    protected void openComponentExamplePageInPortal(MetamerNavigation navigation) {
+        WebElement group = driver.findElement(By.xpath(
+             format("//span[@class='rf-tab-lbl'][text()='{0}']",
+                 navigation.getGroup())));
+        group.click();
+
+        WebElement component = driver.findElement(By.linkText(navigation.getComponent()));
+        component.click();
+        waitUntilElementIsVisible(By.linkText(navigation.getPage()));
+        driver.findElement(By.linkText(navigation.getPage())).click();
+    }
+
+    /**
      * Waits for change of requestTime in Metamer.
      */
     private class RequestTimeChangesHandler implements InvocationHandler {
 
         protected final WebElement element;
         protected String time1;
-        protected final By REQ_TIME = By.cssSelector("span[id='requestTime']");
+        protected final By REQ_TIME = By.cssSelector("span[id$='requestTime']");
 
         public RequestTimeChangesHandler(WebElement element) {
             this.element = element;
         }
 
         protected String getTime() {
-            WebElement el = waitUntilElementIsVisible(By.cssSelector("span[id='requestTime']"));
-            String time = el.getText();
-            return time;
+            WebElement el = waitUntilElementIsVisible(REQ_TIME);
+            return el.getText(); 
         }
 
         protected void beforeAction() {

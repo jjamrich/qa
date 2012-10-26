@@ -44,6 +44,11 @@ public class TestHSelectManyMenu extends AbstractAjaxTest {
         return buildUrl(contextPath, "faces/components/a4jAjax/hSelectManyMenu.xhtml");
     }
 
+    @Override
+    public MetamerNavigation getComponentExampleNavigation() {
+        return new MetamerNavigation("A4J", "A4J Ajax", "Select Many Menu");
+    }
+
     @Test
     public void testSimpleClick() {
         super.testClick();

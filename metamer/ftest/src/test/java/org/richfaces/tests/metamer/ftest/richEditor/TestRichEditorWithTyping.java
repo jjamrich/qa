@@ -27,8 +27,8 @@ import static org.richfaces.tests.metamer.ftest.webdriver.AttributeList.editorAt
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
-import com.google.common.base.Predicate;
 import java.net.URL;
+
 import org.jboss.test.selenium.support.ui.TextContains;
 import org.jboss.test.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.By;
@@ -36,6 +36,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.richfaces.tests.metamer.ftest.AbstractWebDriverTest;
 import org.testng.annotations.Test;
+
+import com.google.common.base.Predicate;
 
 /**
  * @author <a href="mailto:jpapouse@redhat.com">Jan Papousek</a>
@@ -47,6 +49,11 @@ public class TestRichEditorWithTyping extends AbstractWebDriverTest<EditorSimple
     @Override
     public URL getTestUrl() {
         return buildUrl(contextPath, "faces/components/richEditor/anotherSimple.xhtml");
+    }
+
+    @Override
+    public MetamerNavigation getComponentExampleNavigation() {
+        return new MetamerNavigation("Rich", "Rich Editor", "Another Simple");
     }
 
     @Override

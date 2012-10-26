@@ -60,6 +60,11 @@ public class TestEDTFrozenColumns extends AbstractWebDriverTest<TestEDTFrozenCol
     }
 
     @Override
+    public MetamerNavigation getComponentExampleNavigation() {
+        return new MetamerNavigation("Rich", "Rich Extended Data Table", "Frozen columns");
+    }
+
+    @Override
     protected FrozenColumnsPage createPage() {
         return new FrozenColumnsPage();
     }
